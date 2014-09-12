@@ -7,25 +7,12 @@ template<class iterator_S, class iterator_T>
 int levenshtein_distance(iterator_S it_S_begin, iterator_S it_S_end, iterator_T it_T_begin, iterator_T it_T_end)
 {
     #if __cplusplus >= 201402L
-    auto pair_it = std::mismatch(it_S_begin, it_S_end, it_T_begin, it_T_end);
-
-    it_S_begin = pair_it.first;
-    it_T_begin = pair_it.second;
+    std::tie(it_S_begin, it_T_begin) = std::mismatch(it_S_begin, it_S_end, it_T_begin, it_T_end);
     #else
     if(std::distance(it_S_begin, it_S_end) <= std::distance(it_T_begin, it_T_end))
-    {
-        auto pair_it = std::mismatch(it_S_begin, it_S_end, it_T_begin);
-
-        it_S_begin = pair_it.first;
-        it_T_begin = pair_it.second;
-    }
+        std::tie(it_S_begin, it_T_begin) = std::mismatch(it_S_begin, it_S_end, it_T_begin);
     else
-    {
-        auto pair_it = std::mismatch(it_T_begin, it_T_end, it_S_begin);
-
-        it_T_begin = pair_it.first;
-        it_S_begin = pair_it.second;
-    }
+        std::tie(it_T_begin, it_S_begin) = std::mismatch(it_T_begin, it_T_end, it_S_begin);
     #endif // __cplusplus
 
     size_t size_S = std::distance(it_S_begin, it_S_end);
