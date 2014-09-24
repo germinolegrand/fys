@@ -21,4 +21,12 @@ iterator find_nth_if(iterator itBegin, iterator itEnd, size_t n, F f)
     return itBegin;
 }
 
+template<class iterator, class F>
+iterator find_nth_if_not(iterator itBegin, iterator itEnd, size_t n, F f)
+{
+    for(; (itBegin = std::find_if_not(itBegin, itEnd, f)) != itEnd && n != 0; ++itBegin, --n);
+
+    return itBegin;
+}
+
 }
