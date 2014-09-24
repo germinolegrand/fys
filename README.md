@@ -1,12 +1,25 @@
-fys
-===
-
-Free YourSelf library
+FYS : Free YourSelf library
 ===
 
 This is all C++ code placed into public domain, either written by me or someone who placed it there. It's quite various in its content. I'll try to maintain it in an understandable order.
 
-Feel free to reuse, modify, distribute, etc. at will, I don't even want to know.
+Features
+--------
+
+* `algorithm` : generic algorithms that may be proposed into the Standard Library of C++
+  * `extract` : find the begin and the end of a sub-range delimited by two delimiters
+  * `find_nth` : find the nth element matching the condition
+  * `levenshtein_distance` : compute the levenshtein distance between two ranges
+  * `windows` : copy a series of sized windows from a range each separated by an offset
+* `audio` : classes and utilities for manipulating audio streams
+  * `vorbis_streambuf` : a std::streambuf for decoding and demultiplexing multi-channel ogg/vorbis
+
+Public domain and freedom stuff
+-------------------------------
+
+FYS is placed in public domain via the [Unlicence](http://unlicense.org/).
+
+Feel free to reuse, modify, distribute, etc. at will, I don't even have to know.
 
 I will be free to appreciate "thank you" that people choose to say, and are not forced to do so by any licence requirement.
 
@@ -26,4 +39,4 @@ Contribute when you fully understand that you have something (a lot of things!) 
 
 Free yourself from any copyright fear, this code is completely free in every possible way.
 
-Free yourself, and I will be free.
+*Free yourself, and I will be free.*
