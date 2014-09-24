@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <iterator>
 
+namespace fys
+{
+
 template<class ForwardIt, class OutputIt>
 OutputIt incomplete_windows(ForwardIt itBegin, ForwardIt itEnd, OutputIt itOut, typename std::iterator_traits<ForwardIt>::difference_type windowSize, typename std::iterator_traits<ForwardIt>::difference_type windowOffset = 1)
 {
@@ -19,4 +22,6 @@ OutputIt complete_windows(ForwardIt itBegin, ForwardIt itEnd, OutputIt itOut, ty
         itOut = std::copy(itBegin, std::next(itBegin, std::min(windowSize, std::distance(itBegin, itEnd))), itOut);
 
     return itOut;
+}
+
 }

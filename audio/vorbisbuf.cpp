@@ -2,6 +2,9 @@
 
 #include <system_error>
 
+namespace fys
+{
+
 #define ERROR_MESSAGE_FROM_ENUM(e) case e: return #e;
 
 std::error_category& vorbisbuf_error_category()
@@ -279,4 +282,6 @@ bool vorbisbuf::decode_next_frame()
     }
 
     return true;
+}
+
 }

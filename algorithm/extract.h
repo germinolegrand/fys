@@ -1,7 +1,9 @@
-#ifndef EXTRACT_H_INCLUDED
-#define EXTRACT_H_INCLUDED
+#pragma once
 
 #include <algorithm>
+
+namespace fys
+{
 
 template<class iterator, class A, class B>
 std::pair<iterator, iterator> extract(iterator itBegin, iterator itEnd, A const& a, B const& b)
@@ -51,4 +53,4 @@ std::pair<iterator, iterator> extract_between_if(iterator itBegin, iterator itEn
     return {itBegin, std::find_if(itBegin, itEnd, b)};
 }
 
-#endif // EXTRACT_H_INCLUDED
+}

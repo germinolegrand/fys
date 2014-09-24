@@ -6,6 +6,8 @@
 
 #include "stb_vorbis.h"
 
+namespace fys
+{
 
 class vorbisbuf: public std::streambuf
 {
@@ -54,4 +56,4 @@ private:
     bool decode_next_frame();
 };
 
-
+}

@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <vector>
 
+namespace fys
+{
+
 template<class iterator_S, class iterator_T>
 int levenshtein_distance(iterator_S it_S_begin, iterator_S it_S_end, iterator_T it_T_begin, iterator_T it_T_end)
 {
@@ -47,4 +50,6 @@ int levenshtein_distance(iterator_S it_S_begin, iterator_S it_S_end, iterator_T 
     }
 
     return costs.back();
+}
+
 }
