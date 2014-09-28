@@ -6,41 +6,41 @@
 namespace fys
 {
 
-template<class iterator_S, class iterator_T>
-int levenshtein_distance(iterator_S it_S_begin, iterator_S it_S_end, iterator_T it_T_begin, iterator_T it_T_end)
+template<class ForwardIt1, class ForwardIt2>
+int levenshtein_distance(ForwardIt1 first1, ForwardIt1 last1, ForwardIt2 first2, ForwardIt2 last2)
 {
     #if __cplusplus >= 201402L
-    std::tie(it_S_begin, it_T_begin) = std::mismatch(it_S_begin, it_S_end, it_T_begin, it_T_end);
+    std::tie(first1, first2) = std::mismatch(first1, last1, first2, last2);
     #else
-    if(std::distance(it_S_begin, it_S_end) <= std::distance(it_T_begin, it_T_end))
-        std::tie(it_S_begin, it_T_begin) = std::mismatch(it_S_begin, it_S_end, it_T_begin);
+    if(std::distance(first1, last1) <= std::distance(first2, last2))
+        std::tie(first1, first2) = std::mismatch(first1, last1, first2);
     else
-        std::tie(it_T_begin, it_S_begin) = std::mismatch(it_T_begin, it_T_end, it_S_begin);
+        std::tie(first2, first1) = std::mismatch(first2, last2, first1);
     #endif // __cplusplus
 
-    size_t size_S = std::distance(it_S_begin, it_S_end);
-    size_t size_T = std::distance(it_T_begin, it_T_end);
+    size_t size1 = std::distance(first1, last1);
+    size_t size2 = std::distance(first2, last2);
 
-    if(size_S == 0)
-        return size_T;
-    if(size_T == 0)
-        return size_S;
+    if(size1 == 0)
+        return size2;
+    if(size2 == 0)
+        return size1;
 
-    std::vector<int> costs(size_T + 1);
+    std::vector<int> costs(size2 + 1);
 
     for(size_t i = 0; i < costs.size(); ++i)
         costs[i] = i;
 
-    for(size_t i = 0; i < size_S; ++i)
+    for(size_t i = 0; i < size1; ++i)
     {
         costs[0] = i + 1;
         int corner = i;
 
-        for(size_t j = 0; j < size_T; ++j)
+        for(size_t j = 0; j < size2; ++j)
         {
             int upper = costs[j + 1];
 
-            if(*std::next(it_S_begin, i) == *std::next(it_T_begin, j))
+            if(*std::next(first1, i) == *std::next(first2, j))
                 costs[j + 1] = corner;
             else
                 costs[j + 1] = std::min(costs[j], std::min(upper, corner)) + 1;

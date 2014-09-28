@@ -5,52 +5,52 @@
 namespace fys
 {
 
-template<class iterator, class A, class B>
-std::pair<iterator, iterator> extract(iterator itBegin, iterator itEnd, A const& a, B const& b)
+template<class ForwardIt, class A, class B>
+std::pair<ForwardIt, ForwardIt> extract(ForwardIt first, ForwardIt last, A const& delimiter1, B const& delimiter2)
 {
-    itBegin = std::find(itBegin, itEnd, a);
+    first = std::find(first, last, delimiter1);
 
-    iterator sub_itEnd = std::find(itBegin, itEnd, b);
+    ForwardIt sub_last = std::find(first, last, delimiter2);
 
-    if(sub_itEnd != itEnd)
-        ++sub_itEnd;
+    if(sub_last != last)
+        ++sub_last;
 
-    return {itBegin, sub_itEnd};
+    return {first, sub_last};
 }
 
-template<class iterator, class A, class B>
-std::pair<iterator, iterator> extract_if(iterator itBegin, iterator itEnd, A a, B b)
+template<class ForwardIt, class UnaryPredicate1, class UnaryPredicate2>
+std::pair<ForwardIt, ForwardIt> extract_if(ForwardIt first, ForwardIt last, UnaryPredicate1 p_delimiter1, UnaryPredicate2 p_delimiter2)
 {
-    itBegin = std::find_if(itBegin, itEnd, a);
+    first = std::find_if(first, last, p_delimiter1);
 
-    iterator sub_itEnd = std::find_if(itBegin, itEnd, b);
+    ForwardIt sub_last = std::find_if(first, last, p_delimiter2);
 
-    if(sub_itEnd != itEnd)
-        ++sub_itEnd;
+    if(sub_last != last)
+        ++sub_last;
 
-    return {itBegin, sub_itEnd};
+    return {first, sub_last};
 }
 
-template<class iterator, class A, class B>
-std::pair<iterator, iterator> extract_between(iterator itBegin, iterator itEnd, A const& a, B const& b)
+template<class ForwardIt, class A, class B>
+std::pair<ForwardIt, ForwardIt> extract_between(ForwardIt first, ForwardIt last, A const& delimiter1, B const& delimiter2)
 {
-    itBegin = std::find(itBegin, itEnd, a);
+    first = std::find(first, last, delimiter1);
 
-    if(itBegin != itEnd)
-        ++itBegin;
+    if(first != last)
+        ++first;
 
-    return {itBegin, std::find(itBegin, itEnd, b)};
+    return {first, std::find(first, last, delimiter2)};
 }
 
-template<class iterator, class A, class B>
-std::pair<iterator, iterator> extract_between_if(iterator itBegin, iterator itEnd, A a, B b)
+template<class ForwardIt, class UnaryPredicate1, class UnaryPredicate2>
+std::pair<ForwardIt, ForwardIt> extract_between_if(ForwardIt first, ForwardIt last, UnaryPredicate1 p_delimiter1, UnaryPredicate2 p_delimiter2)
 {
-    itBegin = std::find_if(itBegin, itEnd, a);
+    first = std::find_if(first, last, p_delimiter1);
 
-    if(itBegin != itEnd)
-        ++itBegin;
+    if(first != last)
+        ++first;
 
-    return {itBegin, std::find_if(itBegin, itEnd, b)};
+    return {first, std::find_if(first, last, p_delimiter2)};
 }
 
 }

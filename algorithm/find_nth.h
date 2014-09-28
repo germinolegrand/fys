@@ -5,28 +5,28 @@
 namespace fys
 {
 
-template<class iterator, class T>
-iterator find_nth(iterator itBegin, iterator itEnd, size_t n, T const& value)
+template<class InputIt, class T>
+InputIt find_nth(InputIt first, InputIt last, size_t n, T const& value)
 {
-    for(; (itBegin = std::find(itBegin, itEnd, value)) != itEnd && n != 0; ++itBegin, --n);
+    for(; (first = std::find(first, last, value)) != last && n != 0; ++first, --n);
 
-    return itBegin;
+    return first;
 }
 
-template<class iterator, class F>
-iterator find_nth_if(iterator itBegin, iterator itEnd, size_t n, F f)
+template<class InputIt, class UnaryPredicate>
+InputIt find_nth_if(InputIt first, InputIt last, size_t n, UnaryPredicate p)
 {
-    for(; (itBegin = std::find_if(itBegin, itEnd, f)) != itEnd && n != 0; ++itBegin, --n);
+    for(; (first = std::find_if(first, last, p)) != last && n != 0; ++first, --n);
 
-    return itBegin;
+    return first;
 }
 
-template<class iterator, class F>
-iterator find_nth_if_not(iterator itBegin, iterator itEnd, size_t n, F f)
+template<class InputIt, class UnaryPredicate>
+InputIt find_nth_if_not(InputIt first, InputIt last, size_t n, UnaryPredicate q)
 {
-    for(; (itBegin = std::find_if_not(itBegin, itEnd, f)) != itEnd && n != 0; ++itBegin, --n);
+    for(; (first = std::find_if_not(first, last, q)) != last && n != 0; ++first, --n);
 
-    return itBegin;
+    return first;
 }
 
 }
