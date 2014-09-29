@@ -29,4 +29,19 @@ InputIt find_nth_if_not(InputIt first, InputIt last, size_t n, UnaryPredicate q)
     return first;
 }
 
+/**
+    Documents:
+        (1) function(find_nth),
+        (2) function(find_nth_if),
+        (3) function(find_nth_if_not)
+    Returns:
+        The `n`-th iterator `i` counting from `0` in the range `[first,last)` for which the following corresponding conditions hold:
+            (1) `*i == value`,
+            (2) `p(*i) != false`,
+            (3) `q(*i) == false`.
+        Returns `last` if no such iterator is found.
+    Complexity:
+        At most `last - first` applications of the corresponding predicate.
+**/
+
 }

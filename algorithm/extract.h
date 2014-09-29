@@ -53,4 +53,25 @@ std::pair<ForwardIt, ForwardIt> extract_between_if(ForwardIt first, ForwardIt la
     return {first, std::find_if(first, last, p_delimiter2)};
 }
 
+/**
+    Documents:
+        (1) function(extract)
+        (2) function(extract_if)
+        (3) function(extract_between)
+        (4) function(extract_between_if)
+    Effect:
+        In a sequence `[first,last)`, finds the first subsequence delimited by two endpoints `i` and `j` satisfying specific criteria:
+            (1)(3) `*i == delimiter1` and `*j == delimiter2`,
+            (2)(4) `p_delimiter1(*i) != false` and `p_delimiter2(*j) != false`.
+        Those endpoints are:
+            (1)(2) included in the subsequence,
+            (3)(4) excluded from the subsequence.
+    Returns:
+        `make_pair(sub_first, sub_last)`, where
+            `sub_first` is the first iterator in the resulting subsequence or `last` if no first endpoint was found,
+            and `sub_end` is past-the-end iterator in the resulting subsequence or `last` if no second endpoint was found.
+    Complexity:
+        At most `last - first` applications of one of the delimiters predicates.
+**/
+
 }

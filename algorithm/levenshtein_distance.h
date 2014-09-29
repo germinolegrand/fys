@@ -52,4 +52,13 @@ int levenshtein_distance(ForwardIt1 first1, ForwardIt1 last1, ForwardIt2 first2,
     return costs.back();
 }
 
+/**
+    Documents:
+        function(levenshtein_distance)
+    Returns:
+        The Levenshtein distance between `[first1,last1)` and `[first2,last2)`.
+    Complexity:
+        Exactly `(last1 - first1)*(last2 - first2)` comparisons.
+**/
+
 }
