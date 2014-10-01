@@ -42,6 +42,24 @@ InputIt find_nth_if_not(InputIt first, InputIt last, size_t n, UnaryPredicate q)
         Returns `last` if no such iterator is found.
     Complexity:
         At most `last - first` applications of the corresponding predicate.
+    Example:
+```
+int main()
+{
+    std::vector<int> v = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+    std::string s("hello world");
+
+    std::cout << std::distance(begin(s), fys::find_nth(begin(s), end(s), 1, 'l')) << std::endl;
+    std::cout << std::distance(begin(v), fys::find_nth_if(begin(v), end(v), 1, [](int i){ return (i > 6) && (i%4 == 0); })) << std::endl;
+    std::cout << std::distance(begin(v), fys::find_nth_if_not(begin(v), end(v), 1, [](int i){ return (i <= 6) || (i%4 == 0); })) << std::endl;
+}
+```
+    Outputs:
+```
+3
+12
+9
+```
 **/
 
 }

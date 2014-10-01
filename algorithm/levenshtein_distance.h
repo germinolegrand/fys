@@ -59,6 +59,19 @@ int levenshtein_distance(ForwardIt1 first1, ForwardIt1 last1, ForwardIt2 first2,
         The Levenshtein distance between `[first1,last1)` and `[first2,last2)`.
     Complexity:
         Exactly `(last1 - first1)*(last2 - first2)` comparisons.
+    Example:
+```
+int main()
+{
+    std::string s0("Saturday");
+    std::string s1("Sunday");
+    std::cout << fys::levenshtein_distance(begin(s0), end(s0), begin(s1), end(s1)) << std::endl;
+}
+```
+    Output:
+```
+3
+```
 **/
 
 }

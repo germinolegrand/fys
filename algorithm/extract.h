@@ -72,6 +72,40 @@ std::pair<ForwardIt, ForwardIt> extract_between_if(ForwardIt first, ForwardIt la
             and `sub_end` is past-the-end iterator in the resulting subsequence or `last` if no second endpoint was found.
     Complexity:
         At most `last - first` applications of one of the delimiters predicates.
+    Example:
+```
+int main()
+{
+    std::vector<int> v = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+
+    {
+        auto extract_pair = fys::extract(begin(v), end(v), 2, 9);
+        std::for_each(extract_pair.first, extract_pair.second, [](decltype(v)::value_type const& x){ std::cout << x; });
+    }
+    std::cout << std::endl;
+    {
+        auto extract_pair = fys::extract_between(begin(v), end(v), 2, 9);
+        std::for_each(extract_pair.first, extract_pair.second, [](decltype(v)::value_type const& x){ std::cout << x; });
+    }
+    std::cout << std::endl;
+    {
+        auto extract_pair = fys::extract_between(begin(v), end(v), 2, 1);
+        std::for_each(extract_pair.first, extract_pair.second, [](decltype(v)::value_type const& x){ std::cout << x; });
+    }
+    std::cout << std::endl;
+    {
+        auto extract_pair = fys::extract_between_if(begin(v), end(v), [](decltype(v)::value_type const& x){ return x > 4 && x%2 == 0 && x%3 == 0; }, [](decltype(v)::value_type const& x){ return x%5 == 0;});
+        std::for_each(extract_pair.first, extract_pair.second, [](decltype(v)::value_type const& x){ std::cout << x; });
+    }
+}
+```
+    Output:
+```
+23456789
+345678
+345678910111213141516171819
+789
+```
 **/
 
 }
