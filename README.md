@@ -10,7 +10,7 @@ Features
   * `extract` : find the begin and the end of a sub-range delimited by two delimiters
   * `find_nth` : find the nth element matching the condition
   * `levenshtein_distance` : compute the levenshtein distance between two ranges
-  * `windows` : copy a series of sized windows from a range each separated by an offset
+  * `windows` : copy or manipulate a series of sized windows from a range each separated by an offset
 * `audio` : classes and utilities for manipulating audio streams
   * `vorbis_streambuf` : a std::streambuf for decoding and demultiplexing multi-channel ogg/vorbis
 
