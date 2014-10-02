@@ -35,7 +35,7 @@ Working together is the most efficient way of fulfilling a need, but this is onl
 
 Please do not force yourself to contribute, this is not charity.
 
-Contribute when you fully understand that you have something (a lot of things!) to gain in sharing your work. 
+Contribute when you fully understand that you have something (a lot of things!) to gain in sharing your work. Or if you're not sure, or don't know yet, why not give it a try ?
 
 Free yourself from any copyright fear, this code is completely free in every possible way.
 
