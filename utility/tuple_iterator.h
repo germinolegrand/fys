@@ -13,6 +13,7 @@ private:
     Iterator m_it;
 
 public:
+    using iterator_type = Iterator;
     using iterator_category = typename std::iterator_traits<Iterator>::iterator_category;
     using value_type = typename std::tuple_element<N, typename std::iterator_traits<Iterator>::value_type>::type;
     using reference = value_type&;
@@ -23,6 +24,9 @@ public:
     tuple_iterator(Iterator it):
         m_it(it)
     {}
+
+    Iterator base() const
+    { return m_it; }
 
     typename tuple_iterator::reference operator*()
     { return std::get<N>(*m_it); }
@@ -91,6 +95,13 @@ int main()
 
     std::for_each(fys::make_tuple_iterator<0>(begin(v)), fys::make_tuple_iterator<0>(end(v)), [](int const& x){ std::cout << x << "\n"; });
     std::for_each(fys::make_tuple_iterator<1>(begin(m)), fys::make_tuple_iterator<1>(end(m)), [](std::string const& x){ std::cout << x << "\n"; });
+
+    auto it = std::find(fys::make_tuple_iterator<0>(begin(v)), fys::make_tuple_iterator<0>(end(v)), 12).base();
+
+    if(it != end(v))
+    {
+        std::cout << std::get<1>(*it) << "\n";
+    }
 }
 ```
     Output:
@@ -99,6 +110,7 @@ int main()
 12
 have a look!
 hey!
+wanna?
 ```
 **/
 
