@@ -84,7 +84,7 @@ std::streamsize vorbisbuf::channelbuf::xsgetn(char_type* s, std::streamsize coun
     {
         size_t data_to_copy = std::min(static_cast<size_t>(std::distance(gptr(), egptr())), count - data_copied);
 
-		std::memcpy(s + data_copied, gptr(), data_to_copy);
+        std::memcpy(s + data_copied, gptr(), data_to_copy);
         data_copied += data_to_copy;
 
         setg(eback(), gptr() + data_to_copy, egptr());
@@ -109,15 +109,15 @@ void vorbisbuf::channelbuf::push_data(char_type const* data_begin, size_t data_s
 
     if(final_size <= m_decoded_buffer.capacity())
     {
-        memmove(m_decoded_buffer.data(), gptr(), old_data_still_valid);
+        std::memmove(m_decoded_buffer.data(), gptr(), old_data_still_valid);
         m_decoded_buffer.resize(final_size);
-		std::memcpy(m_decoded_buffer.data() + old_data_still_valid, data_begin, data_size);
+        std::memcpy(m_decoded_buffer.data() + old_data_still_valid, data_begin, data_size);
     }
     else
     {
         decltype(m_decoded_buffer) new_buffer(final_size);
-		std::memcpy(new_buffer.data(), gptr(), old_data_still_valid);
-		std::memcpy(new_buffer.data() + old_data_still_valid, data_begin, data_size);
+        std::memcpy(new_buffer.data(), gptr(), old_data_still_valid);
+        std::memcpy(new_buffer.data() + old_data_still_valid, data_begin, data_size);
         std::swap(m_decoded_buffer, new_buffer);
     }
 
@@ -166,7 +166,7 @@ vorbisbuf::vorbisbuf(std::streambuf* streambuf):
         if(error)
             throw std::system_error(error, vorbisbuf_error_category());
 
-        memmove(&*begin(m_buffer), &*(begin(m_buffer) + data_used), m_buffer.size() - data_used);
+        std::memmove(&*begin(m_buffer), &*(begin(m_buffer) + data_used), m_buffer.size() - data_used);
         m_current = begin(m_buffer) + m_buffer.size() - data_used;
     }
 
@@ -249,7 +249,7 @@ bool vorbisbuf::decode_next_frame()
         }
 
         size_t data_ready = std::distance(begin(m_buffer) + data_used, next);
-        memmove(&*begin(m_buffer), &*(begin(m_buffer) + data_used), data_ready);
+        std::memmove(&*begin(m_buffer), &*(begin(m_buffer) + data_used), data_ready);
         m_current = begin(m_buffer) + data_ready;
 
         if(samples == 0)//(resynching the stream, keep going)
