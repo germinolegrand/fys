@@ -14,6 +14,7 @@ Features
 * `audio` : classes and utilities for manipulating audio streams
   * `vorbis_streambuf` : a std::streambuf for decoding and demultiplexing multi-channel ogg/vorbis
 * `utility` : general purpose libraries, little things that makes coding easier
+  * `is` : a simple function to tell if an object is of a given type
   * `tuple_iterator` : an iterator adaptator that permits to iterate over a sequence of tuples while accessing only to one element
   * `underlying_cast` : simple functions to easily manipulate enum class and their underlying values
 
