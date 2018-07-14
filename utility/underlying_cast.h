@@ -6,7 +6,7 @@ namespace fys
 {
 
 template<class T>
-auto underlying_cast(T& t) -> typename std::underlying_type<T>::type
+auto underlying_cast(T const& t) -> typename std::underlying_type<T>::type
 {
     return static_cast<typename std::underlying_type<T>::type>(t);
 }
